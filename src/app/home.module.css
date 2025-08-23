@@ -1,0 +1,100 @@
+.container {
+  display: flex;
+  gap: 50px;
+  /* border: 2px solid yellow; */
+}
+.textbox {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+
+.title {
+  font-size: 5rem;
+}
+.paragraph {
+  font-weight: 500;
+}
+
+.banner {
+  width: 100%;
+}
+
+.bannerInnerDiv {
+  /* border: 2px solid pink; */
+  width: 100%;
+  display: flex;
+  /* gap: 20px; */
+  justify-content: space-between;
+  position: relative;
+}
+.bannerInnerDiv img {
+  min-width: 25px;
+  /* min-height: 25px; */
+}
+
+.imageBox {
+  max-width: 500px;
+  flex: 1 1 100%;
+  position: relative;
+  border-radius: 20px;
+
+  /* border: 2px solid red; */
+}
+.imageBox img {
+  object-fit: cover;
+  border-radius: 20px;
+  /* border: 2px solid red; */
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.button {
+  padding: clamp(0.2rem, 0.7rem, 1rem);
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 5px;
+  border: none;
+}
+.button:first-child {
+  background-color: var(--btn-primary-color);
+  color: white;
+}
+.button:second-child {
+  background-color: white;
+  color: var(--bg-secondary-color);
+}
+
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+    /* align-items: center; */
+    padding: 10px;
+    align-items: stretch;
+  }
+
+  .imageBox {
+    flex: 1 1 500px;
+  }
+
+  .textbox {
+    align-items: center;
+    text-align: center;
+  }
+}
+@media (max-width: 500px) {
+  .title {
+    font-size: 2rem;
+  }
+  .paragraph {
+    font-size: 1rem;
+  }
+  .button {
+    padding: 0.6rem;
+    font-size: 15px;
+  }
+}

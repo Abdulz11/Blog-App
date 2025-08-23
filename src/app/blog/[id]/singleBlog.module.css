@@ -1,0 +1,66 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.fade {
+  color: var(--bg-secondary-color);
+}
+.textbox {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+.pretitle {
+  color: var(--btn-primary-color);
+}
+.title {
+  font-size: 3rem;
+  line-height: 70px;
+}
+.paragraph {
+  font-weight: 500;
+  line-height: 30px;
+}
+.imageBox {
+  max-width: 500px;
+  height: 80vh;
+  flex: 1;
+  position: relative;
+}
+.top {
+  display: flex;
+}
+.flex {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  align-items: center;
+}
+.authorInfo {
+  display: flex;
+  gap: 30px;
+}
+.smallimage {
+  object-fit: cover;
+}
+.authorimagebox {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.imageboxImg {
+  object-fit: cover;
+}
+
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+    align-content: center;
+    /* border: 2px solid red; */
+  }
+}

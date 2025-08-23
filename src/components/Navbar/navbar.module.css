@@ -1,0 +1,111 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--bg-primary-color);
+  padding: 2rem 0;
+  font-weight: 600;
+  position: relative;
+}
+
+.linkDiv {
+  display: flex;
+  gap: 1.4rem;
+}
+.linkDiv > * {
+  padding: 0.6rem 0.9rem;
+}
+
+.active {
+  background-color: white;
+  color: var(--bg-primary-color);
+  border-radius: 20px;
+  transition: all 0.7;
+}
+
+.navButton {
+  background-color: white;
+  color: var(--bg-primary-color);
+  font-weight: 600;
+  transition: all 0.7;
+  border: none;
+}
+
+/* Dropdown Menu */
+.dropdown {
+  background-color: var(--bg-primary-color);
+  padding: 10px;
+
+  display: flex;
+  justify-content: flex-start;
+  position: fixed;
+  top: 0;
+  right: 0;
+  flex-direction: column;
+  height: 100vh;
+  width: 40%;
+  z-index: 2;
+  /* hide till larger screens */
+}
+.dropdownContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80%;
+}
+
+.dropdownContainer a {
+  padding: 10px;
+}
+
+.dropdownButton {
+  display: none;
+  cursor: pointer;
+}
+.menuImageDiv {
+  position: relative;
+  min-width: 30px;
+  /* height: 30px; */
+}
+
+.closeButtonDiv {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+@media (max-width: 850px) {
+  .linkDiv > a {
+    display: none;
+  }
+
+  .dropdownButton {
+    display: unset;
+  }
+}
+@media (max-width: 500px) {
+  .container > .logo {
+    font-size: 15px;
+  }
+
+  .linkDiv button {
+    padding: 0.5rem 0.8rem;
+  }
+  .logo {
+    align-self: center;
+  }
+}
+@media (max-width: 320px) {
+  /* .container {
+    border: 2px solid red;
+  }
+
+  .linkDiv button {
+    padding: 0.3rem 0.5rem;
+    font-size: 10px;
+  }
+  .linkDiv {
+    border: 2px solid yellow;
+  } */
+}
