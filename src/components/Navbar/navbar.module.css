@@ -4,7 +4,7 @@
   background-color: var(--bg-primary-color);
   padding: 2rem 0;
   font-weight: 600;
-  position: relative;
+  /* position: relative; */
 }
 
 .linkDiv {
@@ -29,12 +29,23 @@
   transition: all 0.7;
   border: none;
 }
+/* logo */
+.logoDiv {
+  display: flex;
+
+  align-items: center;
+}
+
+.logoImageDiv {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
 
 /* Dropdown Menu */
 .dropdown {
   background-color: var(--bg-primary-color);
   padding: 10px;
-
   display: flex;
   justify-content: flex-start;
   position: fixed;
@@ -44,8 +55,8 @@
   height: 100vh;
   width: 40%;
   z-index: 2;
-  /* hide till larger screens */
 }
+
 .dropdownContainer {
   display: flex;
   flex-direction: column;
@@ -57,14 +68,13 @@
   padding: 10px;
 }
 
-.dropdownButton {
-  display: none;
+.menuButton {
   cursor: pointer;
 }
 .menuImageDiv {
   position: relative;
   min-width: 30px;
-  /* height: 30px; */
+  display: none;
 }
 
 .closeButtonDiv {
@@ -75,12 +85,17 @@
   margin-top: 20px;
 }
 
+@media (960px > width > 850px) {
+  .linkDiv {
+    gap: 0.7rem;
+  }
+}
 @media (max-width: 850px) {
   .linkDiv > a {
     display: none;
   }
 
-  .dropdownButton {
+  .menuImageDiv {
     display: unset;
   }
 }
@@ -96,16 +111,12 @@
     align-self: center;
   }
 }
-@media (max-width: 320px) {
-  /* .container {
-    border: 2px solid red;
-  }
 
-  .linkDiv button {
-    padding: 0.3rem 0.5rem;
-    font-size: 10px;
+@media (max-width: 350px) {
+  .dropdown {
+    width: 50%;
   }
-  .linkDiv {
-    border: 2px solid yellow;
-  } */
+  .logo {
+    font-size: 15px;
+  }
 }

@@ -16,8 +16,8 @@ const authOptions: NextAuthConfig = {
       try {
         await connectToDb();
         let loggedInUser = await User.find({ email: user.email });
-        console.log(loggedInUser);
-        if (loggedInUser) {
+
+        if (loggedInUser.length > 0) {
           return true;
         } else {
           await User.create({

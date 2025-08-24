@@ -4,12 +4,16 @@ import type { Metadata } from "next";
 import './global.css'
 import { Poppins } from "next/font/google";
 import { UserProvider } from "@/context/userContext";
+import { Toaster } from "react-hot-toast";
 
-const poppins = Poppins({weight:["100", "200" , "300" , "400" , "500" , "600" , "700" , "800" , "900"], subsets: ["latin"] });
+const poppins = Poppins({weight:["100", "200" , "300" , "400" , "500" , "600" , "700" , "800" , "900"], subsets: ["latin"],fallback:['Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', 'Arial', 'sans-serif'] });
 
 export const metadata: Metadata = {
   title: "Blog App",
   description: "Create Blog Post",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -26,6 +30,7 @@ export default function RootLayout({
               {children}
             <Footer/>
           </UserProvider>
+          <Toaster position="top-right"/>
         </div>
       </body>
     </html>

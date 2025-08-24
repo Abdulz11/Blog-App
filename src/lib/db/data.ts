@@ -63,8 +63,10 @@ export async function fetchUsers(): Promise<IUser[]> {
 // fetch user
 export async function fetchUser(userEmail: string): Promise<IUser[] | []> {
   try {
+    console.log(userEmail);
     await connectToDb();
     const user = await User.find({ email: userEmail });
+    console.log(user);
     return user;
   } catch (err) {
     console.log(err);

@@ -17,20 +17,28 @@
 }
 .paragraph {
   font-weight: 500;
-  line-height: 30px;
+  line-height: 1.8rem;
 }
 .imageBox {
   max-width: 500px;
   flex: 1 1 100%;
   position: relative;
+  border-radius: 20px;
 }
 .imageboxImg {
   object-fit: cover;
+  border-radius: 20px;
 }
 
 .ratings {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+}
+
+.ratings > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .ratingText {
   font-weight: 600;
@@ -43,18 +51,30 @@
   .container {
     flex-direction: column;
     align-items: center;
-    align-items: stretch;
   }
+  .imageBox {
+    width: 400px;
+  }
+
   .textbox {
     flex-direction: column;
     text-align: center;
     padding: 10px;
+    /* align-items: center; */
   }
+
   .imageBox {
     flex: 1 1 500px;
   }
 }
+
 @media (max-width: 450px) {
+  .container {
+    align-items: stretch;
+  }
+  .imageBox {
+    width: unset;
+  }
   .title {
     font-size: 2.2rem;
   }
@@ -62,5 +82,12 @@
     font-size: 7px;
     justify-content: unset;
     gap: 10px;
+  }
+  .ratings > div {
+    margin: 0 1rem;
+  }
+  .imageBox {
+    flex: 1 1 300px;
+    width: unset;
   }
 }
