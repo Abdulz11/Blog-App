@@ -1,7 +1,9 @@
 'use client'
 
+import { submitFunction } from '@/lib/actions/submitPostWrapper'
 import styles from './../app/write/write.module.css'
-import { submitFunction } from '@/app/write/page'
+
+
 
 export default function Form() {
   return (
