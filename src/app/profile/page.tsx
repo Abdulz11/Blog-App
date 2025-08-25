@@ -37,7 +37,7 @@ const session = await auth()
           <div className={styles.top}>
             <div className={styles.imagebox}>
               <Link href={`/blog/${post._id}`}>
-                <Image src={post.img || defaultImage} alt='post image' fill priority className={styles.image}/>
+                <Image src={post.image || defaultImage} alt='post image' fill priority className={styles.image}/>
               </Link>
             </div>
             <span className={styles.date}>{post.createdAt.toISOString().split('T')[0]}</span>
@@ -59,3 +59,4 @@ const session = await auth()
     )
   }
        
+
