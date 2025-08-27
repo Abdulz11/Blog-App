@@ -11,7 +11,6 @@ export async function submitBlogPost(data: FormData) {
   let { title, body, image } = Object.fromEntries(data.entries());
 
   const session = await auth();
-  console.log(image);
 
   if (!session?.user?.email) {
     redirect("/");
@@ -24,6 +23,7 @@ export async function submitBlogPost(data: FormData) {
     await checkImageValidity(image as string);
     await connectToDb();
     let post = new Post({
+      author: session?.user?.name,
       title,
       body,
       image,

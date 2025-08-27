@@ -8,7 +8,13 @@ import { ObjectId } from 'mongoose'
 
 
 
+export async function generateMetadata({params}:{params:{id:string}}) {
+  const post = await fetchPost(params.id);
 
+  return {
+    title: `Blog App | ${post?.title}`|| "Blog Post",
+  }
+}
 
 
 
@@ -17,10 +23,6 @@ const singleBlog = async ({params}:{params:{id:string}})=> {
 console.log(id)
   let post = await fetchPost(id);
   console.log(post)
-  
-
-  
-
   return (
     <div className={styles.container}>
        <div className={styles.imageBox}>

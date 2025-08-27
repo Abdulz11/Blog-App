@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from './profile.module.css'
-import { fetchPosts } from '../../lib/db/data'
+import { fetchPosts, fetchUser } from '../../lib/db/data'
 import { Metadata } from 'next'
 import {PostWithDates} from '../../lib/db/data'
 import { auth } from '@/lib/auth'
@@ -20,9 +20,13 @@ export default async function Profile() {
 
 const session = await auth()
     // @ts-ignore
- let posts = await fetchPosts({email:session?.user.email})
+ let user = await fetchUser(session?.user.email)
+ console.log(session?.user?.email)
+const posts = user?.posts
 
- if(!posts || posts.length == 0) return <h1>No posts yet</h1>
+  if(!posts) return <h1>Something went wrong when fetching posts</h1>
+  
+  if(posts.length == 0 ) return <h1>No posts yet</h1>
 
  return (
     <>
@@ -37,7 +41,7 @@ const session = await auth()
           <div className={styles.top}>
             <div className={styles.imagebox}>
               <Link href={`/blog/${post._id}`}>
-                <Image src={post.img || defaultImage} alt='post image' fill priority className={styles.image}/>
+                <Image src={post.image || defaultImage} alt='post image' fill priority className={styles.image}/>
               </Link>
             </div>
             <span className={styles.date}>{post.createdAt.toISOString().split('T')[0]}</span>

@@ -72,15 +72,13 @@
   .container {
     align-items: stretch;
   }
-  .imageBox {
-    width: unset;
-  }
+
   .title {
     font-size: 2.2rem;
   }
   .ratings {
     font-size: 7px;
-    justify-content: unset;
+
     gap: 10px;
   }
   .ratings > div {

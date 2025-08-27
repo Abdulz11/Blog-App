@@ -41,7 +41,7 @@ export default  function Navbar() {
        <Link href={"/"} className={activeLink('home')}>Home</Link>
        <Link href={"/blog"}className={activeLink('blog')}>Blogs</Link>
        <Link href={"/about"}className={activeLink('about')}>About</Link>
-       {session && <Link href={"/write"}className={activeLink('write')}>Write</Link>}
+      <Link href={"/write"}className={activeLink('write')}>Write</Link>
        {session && <Link href={"/profile"}className={activeLink('profile')}>Profile</Link>}
        <DropDown activeLink={activeLink}/>
        <LogInLogOut session={session}/>

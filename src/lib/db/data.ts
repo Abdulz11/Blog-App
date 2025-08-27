@@ -4,6 +4,12 @@ import { IPost, IUser } from "./models";
 import { ObjectId } from "mongoose";
 
 // interface
+export interface UserWithDates extends IUser {
+  _id: ObjectId;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export interface PostWithDates extends IPost {
   _id: ObjectId;
   createdAt: Date;
@@ -48,30 +54,43 @@ export async function fetchPost(id: string): Promise<PostWithDates | null> {
 }
 
 // fetch all users
-export async function fetchUsers(): Promise<IUser[]> {
-  try {
-    connectToDb();
-    const users = await User.find<IUser>();
-    return users;
-  } catch (err) {
-    console.log(err);
-  } finally {
-    return [];
-  }
-}
+// export async function fetchUsers(): Promise<IUser[]> {
+//   try {
+//     connectToDb();
+//     const users = await User.find<IUser>();
+//     return users;
+//   } catch (err) {
+//     console.log(err);
+//   } finally {
+//     return [];
+//   }
+// }
 
 // fetch user
-export async function fetchUser(userEmail: string): Promise<IUser[] | []> {
+export async function fetchUser(
+  userEmail: string
+): Promise<UserWithDates | null> {
   try {
     console.log(userEmail);
     await connectToDb();
-    const user = await User.find({ email: userEmail });
+    const user = await User.findOne({ email: userEmail }).populate("posts");
+    // console.log(user.posts);
+    return user;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
+}
+
+// fetch author
+export async function fetchAuthor(email: string): Promise<IUser | null> {
+  try {
+    await connectToDb();
+    const user = await User.findOne({ email: email });
     console.log(user);
     return user;
   } catch (err) {
     console.log(err);
-    return [];
+    return null;
   }
 }
-
-// fetch user Posts

@@ -1,10 +1,13 @@
 
-
 import styles from './write.module.css'
 import Image from 'next/image'
 import Form from '@/components/form';
+import { Metadata } from 'next';
 
-
+export const metadata: Metadata = {
+  title: "Blog App | Write ",
+  description: "All Blogs",
+};
 
 
  function writeBlog() {

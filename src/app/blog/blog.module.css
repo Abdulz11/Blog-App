@@ -62,11 +62,15 @@
   color: inherit;
 }
 
+.author {
+  font-size: 10px;
+}
+
 .imagebox {
   width: 100%;
   /* min-width: 230px; */
   position: relative;
-  height: 300px;
+  height: 400px;
   cursor: pointer;
 }
 

@@ -23,7 +23,7 @@ async function Home() {
         </div>
       </div>
       <div className={styles.imageBox}>
-        <Image src='/pexels-evg-kowalievska-1040424.jpg' alt='hero-image' fill className={styles.imageboxImg}/>
+        <Image src='/pexels-evg-kowalievska-1040424.jpg' alt='hero-image' fill className={styles.imageboxImg} priority/>
       </div>
     </div>
     {/* <div>

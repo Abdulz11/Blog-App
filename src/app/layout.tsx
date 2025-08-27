@@ -15,6 +15,11 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
 };
+{/* <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/public/assets/images/apple.svg"
+    /> */}
 
 export default function RootLayout({
   children,

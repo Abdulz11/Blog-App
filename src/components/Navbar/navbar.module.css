@@ -110,13 +110,16 @@
   .logo {
     align-self: center;
   }
-}
-
-@media (max-width: 350px) {
   .dropdown {
     width: 50%;
   }
+}
+
+@media (max-width: 350px) {
   .logo {
     font-size: 15px;
+  }
+  .dropdown {
+    width: 70%;
   }
 }

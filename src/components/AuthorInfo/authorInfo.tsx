@@ -8,7 +8,7 @@ type Props={
 
 
 async function  AuthorInfo({userEmail}:Props) {
-    console.log(userEmail)
+    // console.log(userEmail)
 
     if(!userEmail){
         return 'User Not Found';
@@ -20,12 +20,12 @@ async function  AuthorInfo({userEmail}:Props) {
     <>
         <div className={styles.authorimagebox}>
             {/* @ts-ignore */}
-            <Image src={user[0]?.img || '/pexels-ogo-1486213.jpg' }  alt='userimage' fill className={styles.smallimage}/>
+            <Image src={user?.img || '/pexels-ogo-1486213.jpg' }  alt='userimage' fill className={styles.smallimage}/>
             </div>
             <div>
             <div className={styles.flex}>
                 <h4 className={styles.fade}>Author</h4>
-                <h5>{user[0]?.username}</h5>
+                <h5>{user?.username}</h5>
             </div>
         </div>
     </>

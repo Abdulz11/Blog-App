@@ -35,7 +35,7 @@ function About() {
         </div>
       </div>
       <div className={styles.imageBox}>
-        <Image src='/pexels-ogo-1486213.jpg' alt='' fill className={styles.imageboxImg}/>
+        <Image src='/pexels-ogo-1486213.jpg' alt='' fill className={styles.imageboxImg} priority/>
       </div>
     </div>
   )

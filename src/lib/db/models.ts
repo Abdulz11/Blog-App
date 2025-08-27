@@ -1,5 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 import { PostWithDates } from "./data";
+import { ObjectId } from "mongoose";
 
 export interface IUser {
   username: string;
@@ -9,6 +10,7 @@ export interface IUser {
 }
 
 export interface IPost {
+  author: string;
   title: string;
   body: string;
   image?: string;
@@ -40,6 +42,10 @@ const userSchema = new mongoose.Schema<IUser>(
 
 const postSchema = new mongoose.Schema<IPost>(
   {
+    author: {
+      type: String,
+    },
+
     title: {
       type: String,
       required: true,

@@ -6,6 +6,7 @@ import { fetchPosts } from '../../lib/db/data'
 import { Metadata } from 'next'
 import {PostWithDates} from '../../lib/db/data'
 
+
 const defaultImage = '/pexels-pixabay-157675.jpg' 
 
 // metadata
@@ -18,6 +19,9 @@ export const metadata: Metadata = {
 export default async function Blogs() {
 // @ts-ignore
 let posts = await fetchPosts();
+
+
+
 
 if(!posts || posts.length == 0) return <h1 style={{textAlign:'center'}}>No posts yet</h1>;
 
@@ -40,6 +44,7 @@ if(!posts || posts.length == 0) return <h1 style={{textAlign:'center'}}>No posts
             <p className={styles.desc}>
             {post.body.length > 100 ? `${post.body.slice(0,100)}...`:post.body}
             </p>
+            <p className={styles.author}>By {post.author || 'USER'}</p>
            <Link href={`/blog/${post._id}`}>Read More</Link>
           </div>
         </div>
@@ -48,3 +53,4 @@ if(!posts || posts.length == 0) return <h1 style={{textAlign:'center'}}>No posts
     )
   }
        
+  
