@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 📖 Blog App
 
-## Getting Started
+**Live Demo**: [https://blog-app-flax-one-86.vercel.app/](https://blog-app-flax-one-86.vercel.app/)
 
-First, run the development server:
+A sleek and responsive platform for sharing stories, ideas, and creativity. Built with **Next.js 14 (App Router)** and featuring **authentication, dynamic routing, and MongoDB integration**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Overview
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This modern web application allows users to:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- 📰 **Browse** blog posts
+- ✍️ **Write** and publish new blogs
+- 🔐 **Log in** to manage content
+- ⚡ **Explore** dynamic routes with SEO-friendly metadata
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ✨ Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Responsive UI (mobile-first)
+- Authentication with **NextAuth v5 (JWT-based)**
+- Dynamic blog routes (`/blogs/[slug]`)
+- Protected routes using **Next.js Middleware**
+- Optimized SSR + Server Actions in forms
+- Deployed on **Vercel**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🛠️ Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Framework**: [Next.js 14 (App Router)](https://nextjs.org/)
+- **Auth**: [NextAuth v5](https://next-auth.js.org/)
+- **Database**: [MongoDB](https://www.mongodb.com/) with Mongoose
+- **Styling**: CSS Modules
+- **Deployment**: [Vercel](https://vercel.com/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+
+## ⚡ Quick Start
+
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url> blog-app
+   cd blog-app
+   ```
