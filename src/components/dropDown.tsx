@@ -38,7 +38,7 @@ export default function DropDown(props:any) {
       <Link href={"/"} className={activeLink('home')}>Home</Link>
       <Link href={"/blog"}className={activeLink('blog')}>Blogs</Link>
       <Link href={"/about"}className={activeLink('about')}>About</Link>
-      <Link href={"/write"}className={activeLink('write')}>Write</Link>s
+      <Link href={"/write"}className={activeLink('write')}>Write</Link>
       {session && <Link href={"/profile"}className={activeLink('profile')}>Profile</Link>}
     </div>
     </div></>}
