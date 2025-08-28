@@ -12,7 +12,7 @@ export async function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
 
   console.log("TOKEN", token);
-  console.log(process.env.NEXT_AUTH_SECRET);
+  console.log(process.env.NEXTAUTH_SECRET);
 
   if (
     pathname.startsWith("/api/auth") ||
