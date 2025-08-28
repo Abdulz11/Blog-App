@@ -7,6 +7,9 @@ export async function middleware(req: NextRequest) {
   const token = await getToken({ req, secret: process.env.NEXT_AUTH_SECRET });
   const pathname = req.nextUrl.pathname;
 
+  console.log(token);
+  console.log(process.env.NEXT_AUTH_SECRET);
+
   if (
     pathname.startsWith("/api/auth") ||
     pathname === "/" ||
