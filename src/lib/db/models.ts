@@ -1,21 +1,5 @@
-import mongoose, { Types } from "mongoose";
-import { PostWithDates } from "./data";
-import { ObjectId } from "mongoose";
-
-export interface IUser {
-  username: string;
-  email: string;
-  img?: string;
-  posts?: PostWithDates[];
-}
-
-export interface IPost {
-  author: string;
-  title: string;
-  body: string;
-  image?: string;
-  userEmail: string;
-}
+import mongoose from "mongoose";
+import { IPost, IUser } from "../types";
 
 const userSchema = new mongoose.Schema<IUser>(
   {
@@ -35,6 +19,9 @@ const userSchema = new mongoose.Schema<IUser>(
     },
     posts: {
       type: [{ type: mongoose.Schema.ObjectId, ref: "Post" }],
+    },
+    likedPosts: {
+      type: [{ type: String }],
     },
   },
   { timestamps: true }
@@ -60,6 +47,12 @@ const postSchema = new mongoose.Schema<IPost>(
     userEmail: {
       type: String,
       required: true,
+    },
+    likes: { type: [{ type: String }] },
+    comments: {
+      type: [
+        { email: { type: String, required: true }, comment: { type: String } },
+      ],
     },
   },
   { timestamps: true }

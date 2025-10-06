@@ -11,20 +11,22 @@ export async function middleware(req: NextRequest) {
   });
   const pathname = req.nextUrl.pathname;
 
-  console.log("TOKEN", token);
-  console.log(process.env.NEXTAUTH_SECRET);
+  // console.log("TOKEN", token);
+  // console.log(process.env.NEXTAUTH_SECRET);
 
   if (
     pathname.startsWith("/api/auth") ||
     pathname === "/" ||
     pathname === "/about" ||
-    pathname === "/blog"
+    pathname === "/blog" ||
+    pathname === "/signIn"
   ) {
     return NextResponse.next();
   }
   //  Redirect to /login if no token
   if (!token) {
     const loginUrl = new URL("/api/auth/signin/", req.nextUrl.origin);
+    loginUrl.searchParams.set("callbackUrl", req.url);
     return NextResponse.redirect(loginUrl);
   }
   return NextResponse.next();
@@ -36,6 +38,6 @@ export const config = {
     "/dashboard/:path*",
     "/profile/:path*",
     "/write/:path*",
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|css|js)).*)",
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|css|mp4|js)).*)",
   ],
 };

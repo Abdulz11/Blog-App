@@ -1,11 +1,11 @@
 import { useFormStatus } from "react-dom";
 
 export default function SubmitFormButton() {
-    const {pending} = useFormStatus();
+  const { pending } = useFormStatus();
 
   return (
-    
-     <button>{pending ? 'Submitting...':'Submit'}</button> 
-    
-  )
+    <button style={{ cursor: "pointer" }}>
+      {pending ? "Submitting..." : "Submit"}
+    </button>
+  );
 }

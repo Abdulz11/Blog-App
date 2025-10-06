@@ -46,7 +46,7 @@
 }
 
 .desc {
-  color: var(--bg-secondary-color);
+  color: var(--blog-body-text-color);
   width: 90%;
 }
 
@@ -60,6 +60,37 @@
 
 .textbox a {
   color: inherit;
+}
+
+.likeButtonDiv {
+  background-color: grey;
+  display: flex;
+  position: absolute;
+  gap: 10px;
+  padding: 2px 5px;
+  /* min-width: 20%; */
+  min-width: fit-content;
+  top: 10px;
+  left: 0px;
+  align-items: center;
+  border-right: 2px solid black;
+}
+
+.likeButtonDiv p,
+.likeButton {
+  /* border: 2px solid red; */
+  /* font-size: 12px; */
+  padding: 0;
+}
+
+.likeButtonDiv p {
+  color: var(--bg-primary-color);
+}
+.likeButton {
+  position: relative;
+
+  width: 20px;
+  height: 20px;
 }
 
 .author {
@@ -113,11 +144,18 @@
     font-size: 13px;
   }
   .textbox p {
-    font-size: 11px;
+    font-size: 12px;
   }
 }
 
 @media (max-width: 320px) {
+  .desc {
+    text-align: center;
+  }
+  .likeButtonDiv {
+    top: 5px;
+    min-width: 30%;
+  }
   .textbox {
     align-items: center;
   }

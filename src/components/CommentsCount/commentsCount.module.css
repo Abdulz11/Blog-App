@@ -1,0 +1,32 @@
+.container {
+  width: 100%;
+  /* border: 2px solid red; */
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  background-color: grey;
+}
+
+.container .content {
+  display: flex;
+  color: var(--bg-primary-color);
+  gap: 7px;
+}
+.likeImageContainer,
+.commentImageContainer {
+  position: relative;
+
+  padding: 0.5rem;
+  width: 20px;
+  height: 20px;
+}
+
+.likeImageContainer img:hover,
+.commentImageContainer img:hover {
+  transform: scale(1.2);
+  transition: all 100ms linear;
+}
+.likeImageContainer img,
+.commentImageContainer img {
+  cursor: pointer;
+}

@@ -54,7 +54,7 @@
   flex-direction: column;
   height: 100vh;
   width: 40%;
-  z-index: 2;
+  z-index: 4;
 }
 
 .dropdownContainer {
@@ -79,6 +79,7 @@
 
 .closeButtonDiv {
   position: relative;
+  cursor: pointer;
   width: 20px;
   height: 20px;
   margin-bottom: 30px;

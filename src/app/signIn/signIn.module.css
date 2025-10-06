@@ -1,0 +1,65 @@
+.container {
+  width: 100%;
+  height: 100svh;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  position: absolute;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.bgVideoContainer {
+  background-image: url("/joanna-kosinska-7ACuHoezUYk-unsplash.jpg");
+  background-size: cover;
+
+  width: 100%;
+  height: 100%;
+}
+
+.bgVideoContainer video {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+.buttonDiv {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.buttonDiv button {
+  padding: 1.3rem 2rem;
+  width: fit-content;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  text-wrap-mode: nowrap;
+  box-shadow: 10px 10px 20px black;
+  cursor: pointer;
+  border: none;
+  border-radius: 60px;
+  border: 2px solid var(--bg-primary-color);
+  color: var(--bg-primary-color);
+}
+.logoContainer {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+}
+
+@media (max-width: 400px) {
+  .buttonDiv button {
+    /* padding: 1.3rem 2rem; */
+    font-size: 16px;
+  }
+}

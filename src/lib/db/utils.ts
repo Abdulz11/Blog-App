@@ -1,21 +1,41 @@
 import mongoose from "mongoose";
+import { Post, User } from "./models";
 
 let connection = {
   isConnected: false,
 };
+// const testPost = [
+//   {
+//     author: "dullas",
+//     title: "first post",
+//     body: "my first post",
+//     userEmail: "dullas@gmail.com",
+//   },
+//   {
+//     author: "dullas",
+//     title: "second post",
+//     body: "my second post",
+//     userEmail: "dullas@gmail.com",
+//   },
+// ];
+// const testUser = {
+//   username: "dullas",
+//   email: "dullas@gmail.com",
+//   img: "",
+//   posts: [],
+// };
 
 export default async function connectToDb() {
   try {
     // @ts-ignore
     if (connection.isConnected) {
       console.log("using existing connection");
-      // console.log("users object", await User.find());
       return;
     }
+    // console.table(Post.find());
+    // console.log("users", await User.find());
     const db = await mongoose.connect(process.env.MONGODBNET!);
     console.log("connected");
-    // console.log(await User.find());
-
     // @ts-ignore
     connection.isConnected = db.connections[0].readyState;
   } catch (e) {

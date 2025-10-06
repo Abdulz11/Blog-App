@@ -8,41 +8,53 @@ import { redirect } from "next/navigation";
 import { checkImageValidity, generateErrorMessage } from "../utilityFunctions";
 
 export async function submitBlogPost(data: FormData) {
-  let { title, body, image } = Object.fromEntries(data.entries());
+  let { title, body, image, edit } = Object.fromEntries(data.entries());
 
   const session = await auth();
 
   if (!session?.user?.email) {
     redirect("/");
   }
-
   try {
     if (!image) {
       throw new Error("Add an image link");
     }
     await checkImageValidity(image as string);
     await connectToDb();
-    let post = new Post({
-      author: session?.user?.name,
-      title,
-      body,
-      image,
-      userEmail: session?.user?.email,
-    });
+    if (edit) {
+      await Post.findByIdAndUpdate(edit, {
+        title,
+        body,
+        image,
+      });
+    } else {
+      let post = new Post({
+        author: session?.user?.name,
+        title,
+        body,
+        image,
+        userEmail: session?.user?.email,
+      });
 
-    // console.log(post);
-    const createdPost = await post.save();
+      // console.log(post);
+      const createdPost = await post.save();
 
-    await User.updateOne(
-      { email: session?.user?.email },
-      { $push: { posts: createdPost._id } }
-    );
+      const updatedUser = await User.updateOne(
+        { email: session?.user?.email },
+        { $push: { posts: createdPost._id } }
+      );
+    }
   } catch (e) {
     // console.log(e);
     const errorMessage = generateErrorMessage(e);
     return errorMessage;
   }
 
-  revalidatePath("/blog");
-  redirect("/blog");
+  if (edit) {
+    revalidatePath("/profile");
+    redirect("/profile");
+  } else {
+    revalidatePath("/blog");
+    redirect("/blog");
+  }
 }

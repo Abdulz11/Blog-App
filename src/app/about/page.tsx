@@ -8,7 +8,10 @@ export const metadata: Metadata = {
   title: "Blog App | About page",
   description: "About description",
 };
+
+
 function About() {
+
   return (
     <div className={styles.container}>
       <div className={styles.textbox}>
@@ -35,7 +38,7 @@ function About() {
         </div>
       </div>
       <div className={styles.imageBox}>
-        <Image src='/pexels-ogo-1486213.jpg' alt='' fill className={styles.imageboxImg} priority/>
+        <Image src='/pexels-ogo-1486213.jpg' alt='hero-image' fill className={styles.imageboxImg} priority/>
       </div>
     </div>
   )

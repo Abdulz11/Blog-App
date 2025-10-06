@@ -1,20 +1,6 @@
+import { IUser, PostWithDates, UserWithDates } from "../types";
 import { Post, User } from "./models";
 import connectToDb from "./utils";
-import { IPost, IUser } from "./models";
-import { ObjectId } from "mongoose";
-
-// interface
-export interface UserWithDates extends IUser {
-  _id: ObjectId;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-export interface PostWithDates extends IPost {
-  _id: ObjectId;
-  createdAt: Date;
-  updatedAt: Date;
-}
 
 // fetch all post
 export async function fetchPosts(
@@ -45,7 +31,6 @@ export async function fetchPost(id: string): Promise<PostWithDates | null> {
   try {
     connectToDb();
     const post = await Post.findById<PostWithDates>(id);
-    // console.log(post);
     return post;
   } catch (err) {
     console.log(err);
@@ -71,10 +56,10 @@ export async function fetchUser(
   userEmail: string
 ): Promise<UserWithDates | null> {
   try {
-    console.log(userEmail);
+    // console.log(userEmail);
     await connectToDb();
     const user = await User.findOne({ email: userEmail }).populate("posts");
-    // console.log(user.posts);
+    // console.log(user);
     return user;
   } catch (err) {
     console.log(err);
@@ -82,15 +67,62 @@ export async function fetchUser(
   }
 }
 
-// fetch author
-export async function fetchAuthor(email: string): Promise<IUser | null> {
+// fetch liked posts
+export async function fetchLikedPosts(arr: string[]) {
+  let postArray: PostWithDates[] = [];
+  for (const id of arr) {
+    const post: PostWithDates | null = await Post.findById(id);
+    if (post) {
+      postArray = [...postArray, post];
+    }
+  }
+  return postArray;
+}
+
+// update Post
+// export async function updatePost(id: string): Promise<PostWithDates | null> {
+//   try {
+//     connectToDb();
+//     const post = await Post.findByIdAndUpdate(id,{});
+
+//     return post;
+//   } catch (err) {
+//     console.log(err);
+//     return null;
+//   }
+// }
+// delete post
+export async function deletePost(id: string) {
   try {
     await connectToDb();
-    const user = await User.findOne({ email: email });
+
+    const post = await Post.findById(id);
+    const user = await User.findOneAndUpdate(
+      { email: post.userEmail },
+      { $pull: { posts: { _id: id } } },
+      { new: true }
+    );
+
+    const postDeleted = await Post.findByIdAndDelete(id);
     console.log(user);
-    return user;
-  } catch (err) {
-    console.log(err);
-    return null;
+
+    console.log(postDeleted);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+// delete all posts
+export async function deleteAllPost(email: string) {
+  try {
+    await connectToDb();
+    const user = await User.findOneAndUpdate(
+      { email: email },
+      { posts: [] },
+      { new: true }
+    );
+    const postDeleted = await Post.deleteMany({ userEmail: email });
+  } catch (e) {
+    console.log(e);
   }
 }

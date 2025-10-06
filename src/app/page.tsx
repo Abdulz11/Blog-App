@@ -2,17 +2,16 @@
 import Image from 'next/image'
 import styles from './home.module.css'
 import Link from 'next/link'
-import { auth } from '@/lib/auth'
 
 
-async function Home() {  
+ function Home() {  
  
 
   return (
     <>
     <div className={styles.container}>
       <div className={styles.textbox}>
-        <h1 className={styles.title}>Share your voice, your story matters.</h1>
+        <h1 data-testid='hero-text' className={styles.title}>Share your voice, your story matters.</h1>
         <p className={styles.paragraph}>For all the dreamers, this is your space to express and connect with others who value originality and passion.In words not spoken, but written.</p>
         <div className={styles.buttons}>
           <Link href='/write' style={{cursor:'pointer'}}>
@@ -23,7 +22,7 @@ async function Home() {
         </div>
       </div>
       <div className={styles.imageBox}>
-        <Image src='/pexels-evg-kowalievska-1040424.jpg' alt='hero-image' fill className={styles.imageboxImg} priority/>
+        <Image data-testid="hero-image" src='/pexels-evg-kowalievska-1040424.jpg' alt='hero-image' fill className={styles.imageboxImg} priority/>
       </div>
     </div>
     {/* <div>

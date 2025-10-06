@@ -11,6 +11,9 @@ const authOptions: NextAuthConfig = {
     }),
   ],
   secret: process.env.NEXT_AUTH_SECRET,
+  pages: {
+    signIn: "/signIn",
+  },
   callbacks: {
     async signIn({ user }) {
       try {
