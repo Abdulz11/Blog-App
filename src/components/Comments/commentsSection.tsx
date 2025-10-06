@@ -13,7 +13,7 @@ export default function CommentsSection(props: {
       <div className={styles.commentContainer}>
         {props.comments &&
           props.comments.map((comment: { email: string; comment: string }) => (
-            <Comments userEmail={comment.email} comment={comment.comment} />
+            <Comments key={comment.comment} userEmail={comment.email} comment={comment.comment} />
           ))}
       </div>
       <form className={styles.form} action={submitComment}>
@@ -26,3 +26,4 @@ export default function CommentsSection(props: {
     </div>
   );
 }
+
