@@ -12,7 +12,7 @@ export default function LikeButton({
 }: {
   email: string;
   postId: string;
-  usersLikedPosts: string[] | undefined | boolean;
+  usersLikedPosts?: string[] | undefined | boolean;
   likes?: string[] | null;
 }) {
   const [liked, setLiked] = useState(

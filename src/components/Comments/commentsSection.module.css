@@ -33,6 +33,12 @@
   min-height: 5px;
   outline: none;
 }
+.commentBtn {
+  background-color: var(--bg-secondary-color);
+  outline: none;
+  border: none;
+  color: white;
+}
 @media (max-width: 400px) {
   .heading {
     text-align: center;

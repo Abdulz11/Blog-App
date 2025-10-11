@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 const singleBlog = async ({ params }: { params: { id: string } }) => {
   let { id } = params;
   let post = await fetchPost(id);
+
   return (
     <>
       <div className={styles.container}>
@@ -46,9 +47,9 @@ const singleBlog = async ({ params }: { params: { id: string } }) => {
                 </h5>
               </div>
             </div>
-            {post?.updatedAt.toString() !== post?.createdAt.toString() && (
+            {/* {post?.updatedAt.toString() !== post?.createdAt.toString() && (
               <div>
-                <div className={styles.flex}>
+                <div className={styles.flex} style={{ marginLeft: "5px" }}>
                   <h4 className={styles.fade}>Updated</h4>
                   <h5>
                     {post &&
@@ -58,7 +59,7 @@ const singleBlog = async ({ params }: { params: { id: string } }) => {
                   </h5>
                 </div>
               </div>
-            )}
+            )} */}
           </div>
           <p className={styles.paragraph}>{post?.body}</p>
         </div>

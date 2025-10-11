@@ -1,6 +1,7 @@
 import styles from "./commentsSection.module.css";
 import Comments from "./comments";
 import submitComment from "@/lib/actions/submitComment";
+import CommentSectionForm from "../commentSectionForm";
 
 export default function CommentsSection(props: {
   postId: string | undefined;
@@ -16,13 +17,7 @@ export default function CommentsSection(props: {
             <Comments userEmail={comment.email} comment={comment.comment} />
           ))}
       </div>
-      <form className={styles.form} action={submitComment}>
-        {/* <input type='text' placeholder='Comment...' /> */}
-        <textarea name='comment' id='' placeholder='Comment...' />
-        <input type='hidden' value={props.postId} name='postId' />
-        <input type='hidden' value={props.userEmail} name='userEmail' />
-        <button>Comment</button>
-      </form>
+      <CommentSectionForm email={props.userEmail} postId={props.postId} />
     </div>
   );
 }

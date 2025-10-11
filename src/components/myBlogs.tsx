@@ -19,7 +19,6 @@ export default function MyBlogs(props: {
   email: string | undefined;
 }) {
   const { posts, email } = props;
-
   const [openModal, setOpenModal] = useState(false);
   const [idPostDelete, setIdPostDelete] = useState("");
 
@@ -33,6 +32,8 @@ export default function MyBlogs(props: {
       }
     }
   };
+
+  if (posts.length == 0) return <h1>No posts yet</h1>;
 
   return (
     <>

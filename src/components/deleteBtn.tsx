@@ -14,7 +14,9 @@ export default function DeleteBtn(props: {
   };
   return (
     <div onClick={handleDeleteModal} className={styles.deletebtn}>
-      <Image src='/delete.png' alt='delete' fill />
+      <div>
+        <Image src='/delete.png' alt='delete' fill />
+      </div>
     </div>
   );
 }

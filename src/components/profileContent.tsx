@@ -5,25 +5,17 @@ import { useEffect, useState } from "react";
 import MyBlogs from "./myBlogs";
 import LikedBlogs from "./likedBlogs";
 import { PostWithDates } from "@/lib/types";
+import { getItemFromLStore } from "@/lib/utilityFunctions";
 
 export default function ProfileContent(props: {
-  likedPostArray: PostWithDates[];
-  posts: PostWithDates[];
+  likedPostArray: PostWithDates[] | [];
+  posts: PostWithDates[] | [];
   email: string | undefined;
 }) {
   const { posts, email } = props;
-  const [onUserPostsPage, setOnUserPostsPage] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    let stored = localStorage.getItem("onUserPost");
-    if (stored) {
-      let parsedLocalStorage = JSON.parse(stored);
-      console.log(stored);
-      setOnUserPostsPage(parsedLocalStorage);
-    } else {
-      setOnUserPostsPage(true);
-    }
-  }, []);
+  const [onUserPostsPage, setOnUserPostsPage] = useState<boolean | null>(
+    typeof window !== "undefined" && getItemFromLStore("onUserPost")
+  );
 
   useEffect(() => {
     if (typeof onUserPostsPage == "boolean") {

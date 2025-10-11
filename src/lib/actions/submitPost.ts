@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { auth } from "../auth";
 import { Post, User } from "../db/models";
-import connectToDb from "../db/utils";
+import connectToDb from "../db/connectDb";
 import { redirect } from "next/navigation";
 import { checkImageValidity, generateErrorMessage } from "../utilityFunctions";
 
@@ -28,8 +28,9 @@ export async function submitBlogPost(data: FormData) {
         image,
       });
     } else {
+      let fetchedUser = await User.findOne({ email: session?.user?.email });
       let post = new Post({
-        author: session?.user?.name,
+        author: fetchedUser.author,
         title,
         body,
         image,

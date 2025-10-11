@@ -18,12 +18,19 @@ let connection = {
 //     userEmail: "dullas@gmail.com",
 //   },
 // ];
-// const testUser = {
-//   username: "dullas",
-//   email: "dullas@gmail.com",
-//   img: "",
-//   posts: [],
-// };
+
+// username: string;
+//   email: string;
+//   img?: string;
+//   posts?: PostWithDates[];
+//   likedPosts?:
+const testUser = {
+  username: "dullas",
+  email: "dullas@gmail.com",
+  img: "",
+  posts: [],
+  likedPosts: [],
+};
 
 export default async function connectToDb() {
   try {
@@ -33,8 +40,10 @@ export default async function connectToDb() {
       return;
     }
     // console.table(Post.find());
-    // console.log("users", await User.find());
-    const db = await mongoose.connect(process.env.MONGODBNET!);
+
+    // console.log(newOne);
+
+    const db = await mongoose.connect(process.env.MONGODBLOCAL!);
     console.log("connected");
     // @ts-ignore
     connection.isConnected = db.connections[0].readyState;

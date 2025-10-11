@@ -1,7 +1,7 @@
 import NextAuth, { NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
 import { User } from "../db/models";
-import connectToDb from "../db/utils";
+import connectToDb from "../db/connectDb";
 
 const authOptions: NextAuthConfig = {
   providers: [
@@ -25,6 +25,7 @@ const authOptions: NextAuthConfig = {
         } else {
           await User.create({
             username: user.name,
+            author: user.name,
             email: user.email,
             img: user?.image,
           });

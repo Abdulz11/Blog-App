@@ -46,7 +46,7 @@ export default async function Blogs() {
               </Link>
               <LikeButton
                 email={post.userEmail}
-                usersLikedPosts={usersLikedPosts.likedPosts}
+                usersLikedPosts={usersLikedPosts?.likedPosts}
                 postId={String(post._id)}
                 likes={post.likes}
               />
@@ -65,7 +65,7 @@ export default async function Blogs() {
                 ? `${post.body.slice(0, 100)}...`
                 : post.body}
             </p>
-            <p className={styles.author}>By {post.author || "USER"}</p>
+            <p className={styles.author}>By {post.author || user?.author}</p>
             <Link href={`/blog/${post._id}`}>Read More</Link>
           </div>
         </div>

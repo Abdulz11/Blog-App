@@ -2,6 +2,7 @@ import { ObjectId } from "mongoose";
 
 export interface IUser {
   username: string;
+  author?: string;
   email: string;
   img?: string;
   posts?: PostWithDates[];

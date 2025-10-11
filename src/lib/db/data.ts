@@ -1,6 +1,6 @@
 import { IUser, PostWithDates, UserWithDates } from "../types";
 import { Post, User } from "./models";
-import connectToDb from "./utils";
+import connectToDb from "./connectDb";
 
 // fetch all post
 export async function fetchPosts(
@@ -68,7 +68,10 @@ export async function fetchUser(
 }
 
 // fetch liked posts
-export async function fetchLikedPosts(arr: string[]) {
+export async function fetchLikedPosts(
+  arr: string[] | []
+): Promise<PostWithDates[] | []> {
+  if (arr.length == 0) return [];
   let postArray: PostWithDates[] = [];
   for (const id of arr) {
     const post: PostWithDates | null = await Post.findById(id);
@@ -104,9 +107,9 @@ export async function deletePost(id: string) {
     );
 
     const postDeleted = await Post.findByIdAndDelete(id);
-    console.log(user);
+    // console.log(user);
 
-    console.log(postDeleted);
+    // console.log(postDeleted);
   } catch (e) {
     console.log(e);
   }

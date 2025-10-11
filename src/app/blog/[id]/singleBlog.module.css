@@ -33,15 +33,26 @@
   display: flex;
 }
 .flex {
+  height: 100%;
+  text-align: center;
+  padding: 0px 3px;
   display: flex;
   flex-direction: column;
   gap: 7px;
   align-items: center;
 }
+
 .authorInfo {
   display: flex;
   gap: 30px;
+  text-align: center;
 }
+.authorInfo .author {
+  text-align: center;
+}
+/* .authorInfo .author h5 {
+  width: 60%;
+} */
 .smallimage {
   object-fit: cover;
 }
@@ -62,6 +73,17 @@
   }
   .imageBox {
     display: none;
+  }
+}
+@media (max-width: 500px) {
+  .authorInfo {
+    gap: 15px;
+  }
+  .authorInfo h5 {
+    font-size: 12px;
+  }
+  .authorInfo .author h5 {
+    width: 60%;
   }
 }
 @media (max-width: 400px) {
