@@ -24,13 +24,13 @@ let connection = {
 //   img?: string;
 //   posts?: PostWithDates[];
 //   likedPosts?:
-const testUser = {
-  username: "dullas",
-  email: "dullas@gmail.com",
-  img: "",
-  posts: [],
-  likedPosts: [],
-};
+// const testUser = {
+//   username: "dullas",
+//   email: "dullas@gmail.com",
+//   img: "",
+//   posts: [],
+//   likedPosts: [],
+// };
 
 export default async function connectToDb() {
   try {
@@ -43,7 +43,9 @@ export default async function connectToDb() {
 
     // console.log(newOne);
 
-    const db = await mongoose.connect(process.env.MONGODBLOCAL!);
+    const db = await mongoose.connect(process.env.MONGODBNET!, {
+      serverSelectionTimeoutMS: 60000,
+    });
     console.log("connected");
     // @ts-ignore
     connection.isConnected = db.connections[0].readyState;

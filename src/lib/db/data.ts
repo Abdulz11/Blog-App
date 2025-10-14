@@ -22,6 +22,7 @@ export async function fetchPosts(
     if (e instanceof Error) {
       throw new Error(e.message);
     }
+
     throw new Error("Something went wrong when fetching posts");
   }
 }

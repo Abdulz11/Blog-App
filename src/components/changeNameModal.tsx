@@ -14,7 +14,6 @@ export default function ChangeNameModal(props: {
   username?: string;
   author?: string;
 }) {
-  console.log(props.author);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleConfirm = async (e: React.MouseEvent<HTMLButtonElement>) => {

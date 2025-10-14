@@ -10,7 +10,6 @@ export default function ChangeName(props: {
   username: string | undefined;
 }) {
   const [modal, setModal] = useState(false);
-
   return (
     <div className={styles.changeNameForm}>
       <button className={styles.changeNameBtn} onClick={() => setModal(true)}>
