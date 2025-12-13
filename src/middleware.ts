@@ -18,7 +18,7 @@ export async function middleware(req: NextRequest) {
     pathname.startsWith("/api/auth") ||
     pathname === "/" ||
     pathname === "/about" ||
-    pathname === "/blog" ||
+    pathname.startsWith("/blog")||
     pathname === "/signIn"
   ) {
     return NextResponse.next();
@@ -41,3 +41,4 @@ export const config = {
     "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|css|mp4|js)).*)",
   ],
 };
+
