@@ -2,17 +2,23 @@
 import submitComment from "@/lib/actions/submitComment";
 import styles from "../components/Comments/commentsSection.module.css";
 import { useRef } from "react";
+import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 
 export default function CommentSectionForm(props: {
   email: string | undefined;
   postId: string | undefined;
+  isAuth: boolean;
 }) {
   const formRef = useRef<HTMLFormElement>(null);
-  console.log(formRef);
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
 
   const handleSubmitPost = async (formData: FormData) => {
+    if (!props.isAuth) {
+      return await signIn("google", { redirectTo: callbackUrl as string });
+    }
     await submitComment(formData);
-    console.log("clicked");
     formRef.current?.reset();
   };
   return (
@@ -21,7 +27,9 @@ export default function CommentSectionForm(props: {
         <textarea name='comment' id='' placeholder='Comment...' />
         <input type='hidden' value={props.postId} name='postId' />
         <input type='hidden' value={props.email} name='userEmail' />
-        <button className={styles.commentBtn}>Comment</button>
+        <button className={styles.commentBtn}>
+          {props.isAuth ? "Comment" : "Log in to comment"}
+        </button>
       </form>
     </>
   );

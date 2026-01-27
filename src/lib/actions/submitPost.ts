@@ -34,7 +34,7 @@ export async function submitBlogPost(data: FormData) {
         title,
         body,
         image,
-        userEmail: session?.user?.email,
+        email: session?.user?.email,
       });
 
       // console.log(post);

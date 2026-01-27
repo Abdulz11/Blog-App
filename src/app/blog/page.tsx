@@ -9,6 +9,8 @@ import { getToken } from "next-auth/jwt";
 import { auth } from "@/lib/auth";
 import CommentsCount from "@/components/CommentsCount/commentsCount";
 import { PostWithDates, UserWithDates } from "@/lib/types";
+import LikeAPost from "@/components/LikeAPost";
+import LoginInModal from "@/components/Modal/logInModal";
 
 const defaultImage = "/pexels-pixabay-157675.jpg";
 
@@ -20,6 +22,7 @@ export const metadata: Metadata = {
 
 export default async function Blogs() {
   const session = await auth();
+  // console.log(session);
   // @ts-ignore
   let posts = await fetchPosts();
   let user = await fetchUser(session?.user?.email as string);
@@ -30,46 +33,52 @@ export default async function Blogs() {
     return <h1 style={{ textAlign: "center" }}>No posts yet</h1>;
 
   return (
-    <div className={styles.container}>
-      {posts?.map((post: PostWithDates) => (
-        <div className={styles.blog} key={post.title}>
-          <div className={styles.top}>
-            <div className={styles.imagebox}>
-              <Link href={`/blog/${post._id}`}>
-                <Image
-                  src={post.image || defaultImage}
-                  alt='post image'
-                  fill
-                  priority
-                  className={styles.image}
+    <>
+      <div className={styles.container}>
+        {posts?.map((post: PostWithDates) => (
+          <div className={styles.blog} key={post.title}>
+            <div className={styles.top}>
+              <div className={styles.imagebox}>
+                <Link
+                  href={`/blog/${post._id}`}
+                  aria-label={`Go to post by ${post.author}`}
+                >
+                  <Image
+                    src={post.image || defaultImage}
+                    alt='post image'
+                    fill
+                    priority
+                    className={styles.image}
+                  />
+                </Link>
+                <LikeAPost
+                  email={post.email}
+                  usersLikedPosts={usersLikedPosts?.likedPosts}
+                  postId={String(post._id)}
+                  likes={post.likes}
+                  isAuth={session?.user ? true : false}
                 />
-              </Link>
-              <LikeButton
-                email={post.userEmail}
-                usersLikedPosts={usersLikedPosts?.likedPosts}
-                postId={String(post._id)}
-                likes={post.likes}
-              />
+              </div>
+              <span className={styles.date}>
+                {typeof post.createdAt == "string"
+                  ? post.createdAt.split("T")[0]
+                  : post.createdAt.toISOString().split("T")[0]}
+              </span>
             </div>
-            <span className={styles.date}>
-              {typeof post.createdAt == "string"
-                ? post.createdAt.split("T")[0]
-                : post.createdAt.toISOString().split("T")[0]}
-            </span>
+            <CommentsCount numberOfComments={post.comments?.length} />
+            <div className={styles.textbox}>
+              <h2>{post.title}</h2>
+              <p className={styles.desc}>
+                {post.body.length > 100
+                  ? `${post.body.slice(0, 100)}...`
+                  : post.body}
+              </p>
+              <p className={styles.author}>By {post.author || user?.author}</p>
+              <Link href={`/blog/${post._id}`}>Read More</Link>
+            </div>
           </div>
-          <CommentsCount numberOfComments={post.comments?.length} />
-          <div className={styles.textbox}>
-            <h2>{post.title}</h2>
-            <p className={styles.desc}>
-              {post.body.length > 100
-                ? `${post.body.slice(0, 100)}...`
-                : post.body}
-            </p>
-            <p className={styles.author}>By {post.author || user?.author}</p>
-            <Link href={`/blog/${post._id}`}>Read More</Link>
-          </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 }

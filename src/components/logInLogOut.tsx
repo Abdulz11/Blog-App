@@ -4,8 +4,6 @@ import { signIn, signOut } from "next-auth/react";
 export default function LogInLogOut(props: any) {
   const { session } = props;
 
-  // console.log(signIn())
-
   return (
     <>
       {!session ? (

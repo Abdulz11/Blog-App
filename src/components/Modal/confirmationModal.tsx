@@ -2,7 +2,7 @@
 import styles from "./modal.module.css";
 import { Dispatch, SetStateAction } from "react";
 
-export default function Modal(props: {
+export default function ConfirmationModal(props: {
   id: string;
   handleDelete: (id?: string | undefined) => Promise<void>;
   setOpenModal: Dispatch<SetStateAction<boolean>>;

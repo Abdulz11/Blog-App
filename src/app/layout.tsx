@@ -27,10 +27,6 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
 };
-// const pathName = headers().get("next-url") || "";
-// console.log(pathName);
-// const hideElement = pathName.startsWith("/signIn");
-// console.log(hideElement);
 
 export default function RootLayout({
   children,
@@ -42,7 +38,7 @@ export default function RootLayout({
       <body className={poppins.className}>
         <div className='overall-container'>
           <UserProvider>
-            {<Navbar />}
+            <Navbar />
             {children}
             <Footer />
           </UserProvider>

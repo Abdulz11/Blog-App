@@ -1,12 +1,8 @@
 "use client";
 import { changeName } from "@/lib/actions/changeName";
 import styles from "./Modal/modal.module.css";
-import React, {
-  Dispatch,
-  MouseEventHandler,
-  SetStateAction,
-  useRef,
-} from "react";
+import React, { Dispatch, SetStateAction, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ChangeNameModal(props: {
   setModal: Dispatch<SetStateAction<boolean>>;
@@ -15,9 +11,11 @@ export default function ChangeNameModal(props: {
   author?: string;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
   const handleConfirm = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    e.currentTarget.disabled = true;
     const data = {
       email: props.userEmail,
       author: `${inputRef?.current?.value}`
@@ -28,8 +26,9 @@ export default function ChangeNameModal(props: {
     Object.entries(data).forEach(([key, value]) =>
       form.append(key, value as string)
     );
-    await changeName(form);
+    await changeName(null, form);
     props.setModal(false);
+    router.refresh();
   };
 
   return (
@@ -47,11 +46,14 @@ export default function ChangeNameModal(props: {
             />
             <input type='hidden' value={props?.userEmail} name='email' />
             <div className={styles.buttons}>
-              <button className={styles.yes} onClick={(e) => handleConfirm(e)}>
+              <button
+                className={`${styles.yes} ${styles.disabled}`}
+                onClick={(e) => handleConfirm(e)}
+              >
                 Change
               </button>
               <button
-                className={styles.no}
+                className={`${styles.no}`}
                 onClick={(e) => {
                   e.preventDefault();
                   props.setModal(false);

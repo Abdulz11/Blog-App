@@ -13,31 +13,36 @@ export default function ProfileContent(props: {
   email: string | undefined;
 }) {
   const { posts, email } = props;
-  const [onUserPostsPage, setOnUserPostsPage] = useState<boolean | null>(
-    typeof window !== "undefined" && getItemFromLStore("onUserPost")
-  );
+  const [onUserPostsPage, setOnUserPostsPage] = useState<boolean | null>(null);
 
   useEffect(() => {
-    if (typeof onUserPostsPage == "boolean") {
+    console.log(getItemFromLStore("onUserPost"));
+    setOnUserPostsPage(getItemFromLStore("onUserPost"));
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && onUserPostsPage !== null) {
       console.log(onUserPostsPage);
       localStorage.setItem("onUserPost", JSON.stringify(onUserPostsPage));
     }
   }, [onUserPostsPage]);
 
-  return (
-    <>
-      <ProfileNavigation
-        setMyPost={setOnUserPostsPage}
-        myPost={onUserPostsPage}
-      />
-      {onUserPostsPage ? (
-        <>
-          <h3>{posts.length > 0 && `${posts.length} posts`}</h3>
-          <MyBlogs posts={posts} email={email} />
-        </>
-      ) : (
-        <LikedBlogs posts={props.likedPostArray} />
-      )}
-    </>
-  );
+  {
+    return onUserPostsPage !== null ? (
+      <>
+        <ProfileNavigation
+          setMyPost={setOnUserPostsPage}
+          myPost={onUserPostsPage}
+        />
+        {onUserPostsPage ? (
+          <>
+            <h3>{posts.length > 0 && `${posts.length} posts`}</h3>
+            <MyBlogs posts={posts} email={email} />
+          </>
+        ) : (
+          <LikedBlogs posts={props.likedPostArray} />
+        )}
+      </>
+    ) : null;
+  }
 }

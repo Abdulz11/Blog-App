@@ -8,6 +8,7 @@ export async function fetchPosts(
 ): Promise<PostWithDates[] | undefined> {
   try {
     await connectToDb();
+
     let posts;
     if (email) {
       posts = await Post.find<PostWithDates>({ email: email });
@@ -30,7 +31,7 @@ export async function fetchPosts(
 // fetch single post
 export async function fetchPost(id: string): Promise<PostWithDates | null> {
   try {
-    connectToDb();
+    await connectToDb();
     const post = await Post.findById<PostWithDates>(id);
     return post;
   } catch (err) {
@@ -39,31 +40,18 @@ export async function fetchPost(id: string): Promise<PostWithDates | null> {
   }
 }
 
-// fetch all users
-// export async function fetchUsers(): Promise<IUser[]> {
-//   try {
-//     connectToDb();
-//     const users = await User.find<IUser>();
-//     return users;
-//   } catch (err) {
-//     console.log(err);
-//   } finally {
-//     return [];
-//   }
-// }
-
 // fetch user
 export async function fetchUser(
   userEmail: string
 ): Promise<UserWithDates | null> {
   try {
-    // console.log(userEmail);
     await connectToDb();
+
     const user = await User.findOne({ email: userEmail }).populate("posts");
-    // console.log(user);
+
     return user;
   } catch (err) {
-    console.log(err);
+    console.log("this is the error in fetchuser data", err);
     return null;
   }
 }
@@ -102,15 +90,12 @@ export async function deletePost(id: string) {
 
     const post = await Post.findById(id);
     const user = await User.findOneAndUpdate(
-      { email: post.userEmail },
+      { email: post.email },
       { $pull: { posts: { _id: id } } },
       { new: true }
     );
 
     const postDeleted = await Post.findByIdAndDelete(id);
-    // console.log(user);
-
-    // console.log(postDeleted);
   } catch (e) {
     console.log(e);
   }
@@ -125,7 +110,7 @@ export async function deleteAllPost(email: string) {
       { posts: [] },
       { new: true }
     );
-    const postDeleted = await Post.deleteMany({ userEmail: email });
+    await Post.deleteMany({ email });
   } catch (e) {
     console.log(e);
   }

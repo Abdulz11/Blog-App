@@ -16,6 +16,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 
 const singleBlog = async ({ params }: { params: { id: string } }) => {
   let { id } = params;
+
   let post = await fetchPost(id);
 
   return (
@@ -34,7 +35,7 @@ const singleBlog = async ({ params }: { params: { id: string } }) => {
           <div className={styles.authorInfo}>
             {/* USER COMPONENT */}
             <Suspense fallback={<div>Loading...</div>}>
-              <AuthorInfo userEmail={post?.userEmail} />
+              <AuthorInfo userEmail={post?.email} />
             </Suspense>
             <div>
               <div className={styles.flex}>
@@ -66,7 +67,7 @@ const singleBlog = async ({ params }: { params: { id: string } }) => {
       </div>
       <CommentsSection
         postId={post?._id.toString()}
-        userEmail={post?.userEmail}
+        userEmail={post?.email}
         comments={post?.comments}
       />
     </>

@@ -14,7 +14,7 @@ export interface IPost {
   title: string;
   body: string;
   image?: string;
-  userEmail: string;
+  email: string;
   likes?: string[];
   comments?: { comment: string; email: string }[];
 }

@@ -3,7 +3,7 @@
 import styles from "../app/profile/profile.module.css";
 import Link from "next/link";
 import { useState } from "react";
-import Modal from "./Modal/modal";
+import Modal from "./Modal/confirmationModal";
 import Image from "next/image";
 import EditBtn from "./editBtn";
 import DeleteBtn from "./deleteBtn";

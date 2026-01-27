@@ -48,7 +48,7 @@ const postSchema = new mongoose.Schema<IPost>(
     image: {
       type: String,
     },
-    userEmail: {
+    email: {
       type: String,
       required: true,
     },

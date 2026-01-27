@@ -37,6 +37,7 @@ export default async function connectToDb() {
     // @ts-ignore
     if (connection.isConnected) {
       console.log("using existing connection");
+
       return;
     }
     // console.table(Post.find());
@@ -44,7 +45,7 @@ export default async function connectToDb() {
     // console.log(newOne);
 
     const db = await mongoose.connect(process.env.MONGODBNET!, {
-      serverSelectionTimeoutMS: 60000,
+      serverSelectionTimeoutMS: 100000,
     });
     console.log("connected");
     // @ts-ignore
@@ -55,9 +56,9 @@ export default async function connectToDb() {
       throw new Error("Something went wrong when connecting to database");
     }
     if (e instanceof Error) {
-      // throw new Error(e.message);
       console.log("this is the error instance", e);
       console.log("Error occured when connecting to database");
+      throw new Error(e?.message || "Error connecting to database");
     }
   }
 }
