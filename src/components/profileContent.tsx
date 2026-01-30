@@ -16,7 +16,7 @@ export default function ProfileContent(props: {
   const [onUserPostsPage, setOnUserPostsPage] = useState<boolean | null>(null);
 
   useEffect(() => {
-    console.log(getItemFromLStore("onUserPost"));
+    // console.log(getItemFromLStore("onUserPost"));
     setOnUserPostsPage(getItemFromLStore("onUserPost"));
   }, []);
 

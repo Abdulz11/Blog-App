@@ -41,28 +41,23 @@ const singleBlog = async ({ params }: { params: { id: string } }) => {
               <div className={styles.flex}>
                 <h4 className={styles.fade}>Created</h4>
                 <h5>
-                  {post &&
-                    (typeof post.createdAt == "string"
-                      ? post.createdAt.split("T")[0]
-                      : post.createdAt.toISOString().split("T")[0])}
+                  {post && post.body.createdAt.toISOString().split("T")[0]}
                 </h5>
               </div>
             </div>
-            {/* {post?.updatedAt.toString() !== post?.createdAt.toString() && (
+            {post?.body.updatedAt?.toString() !==
+              post?.body.createdAt.toString() && (
               <div>
                 <div className={styles.flex} style={{ marginLeft: "5px" }}>
                   <h4 className={styles.fade}>Updated</h4>
                   <h5>
-                    {post &&
-                      (typeof post.updatedAt == "string"
-                        ? post.updatedAt.split("T")[0]
-                        : post.updatedAt.toISOString().split("T")[0])}
+                    {post && post.body.updatedAt?.toISOString().split("T")[0]}
                   </h5>
                 </div>
               </div>
-            )} */}
+            )}
           </div>
-          <p className={styles.paragraph}>{post?.body}</p>
+          <p className={styles.paragraph}>{post?.body.content}</p>
         </div>
       </div>
       <CommentsSection

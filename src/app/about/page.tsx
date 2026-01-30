@@ -1,7 +1,6 @@
-import Image from 'next/image'
-import styles from './about.module.css'
-import { Metadata } from 'next';
-
+import Image from "next/image";
+import styles from "./about.module.css";
+import { Metadata } from "next";
 
 // metadata
 export const metadata: Metadata = {
@@ -9,15 +8,19 @@ export const metadata: Metadata = {
   description: "About description",
 };
 
-
 function About() {
-
   return (
     <div className={styles.container}>
       <div className={styles.textbox}>
-        <h3 className={styles.pretitle}>About Agency</h3>
-        <h1 className={styles.title}>Unleash your creativity, share your voice.</h1>
-        <p className={styles.paragraph}>We see blogging as a canvas where creativity flows freely, giving you the power to inspire, challenge, and connect. Here, your voice isn’t just heard, it’s celebrated.</p>
+        <h3 className={styles.pretitle}>About Blogg</h3>
+        <h1 className={styles.title}>
+          Unleash your creativity, share your voice.
+        </h1>
+        <p className={styles.paragraph}>
+          We see blogging as a canvas where creativity flows freely, giving you
+          the power to inspire, challenge, and connect. Here, your voice isn’t
+          just heard, it’s celebrated.
+        </p>
         <div className={styles.ratings}>
           <div>
             <h1 className={styles.ratingTitle}>B</h1>
@@ -38,10 +41,16 @@ function About() {
         </div>
       </div>
       <div className={styles.imageBox}>
-        <Image src='/pexels-ogo-1486213.jpg' alt='hero-image' fill className={styles.imageboxImg} priority/>
+        <Image
+          src='/pexels-ogo-1486213.jpg'
+          alt='hero-image'
+          fill
+          className={styles.imageboxImg}
+          priority
+        />
       </div>
     </div>
-  )
+  );
 }
 
-export default About
+export default About;

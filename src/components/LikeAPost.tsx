@@ -28,7 +28,6 @@ function LikeAPost({
         postId={String(postId)}
         likes={likes}
         isAuth={isAuth}
-        modal={modal}
         setModal={setModal}
       />
     </>

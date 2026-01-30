@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema<IUser>(
       type: [{ type: String }],
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const postSchema = new mongoose.Schema<IPost>(
@@ -42,8 +42,20 @@ const postSchema = new mongoose.Schema<IPost>(
       required: true,
     },
     body: {
-      type: String,
-      required: true,
+      content: {
+        type: String,
+        required: true,
+      },
+      createdAt: {
+        type: Date,
+        required: true,
+        immutable: true,
+        default: Date.now,
+      },
+      updatedAt: {
+        type: Date,
+        default: Date.now,
+      },
     },
     image: {
       type: String,
@@ -59,7 +71,7 @@ const postSchema = new mongoose.Schema<IPost>(
       ],
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export const User =

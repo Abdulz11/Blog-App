@@ -10,22 +10,20 @@ export default function LikeButton({
   postId,
   usersLikedPosts,
   likes = null,
-  isAuth,
-  modal,
-  setModal,
+  isAuth = false,
+  setModal = () => null,
 }: {
   email: string;
   postId: string;
   usersLikedPosts?: string[] | undefined | boolean;
   likes?: string[] | null;
-  isAuth: boolean;
-  modal: boolean;
-  setModal: Dispatch<SetStateAction<boolean>>;
+  isAuth?: boolean;
+  setModal?: Dispatch<SetStateAction<boolean>>;
 }) {
   const [liked, setLiked] = useState(
     typeof usersLikedPosts == "boolean"
       ? usersLikedPosts
-      : usersLikedPosts?.includes(postId)
+      : usersLikedPosts?.includes(postId),
   );
 
   const [numberOflikes, setNumberOflikes] = useState(likes?.length);
@@ -55,6 +53,7 @@ export default function LikeButton({
 
     timeoutId.current = setTimeout(() => {
       likePost(body);
+      console.log("clicked");
     }, 10000);
   }
 

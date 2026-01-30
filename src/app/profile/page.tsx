@@ -17,7 +17,6 @@ export default async function Profile() {
   const session = await auth();
   // @ts-ignore
   let user = await fetchUser(session?.user.email);
-  console.log(session?.user?.email);
 
   // test
   // let user = (await fetchUser("dullas@gmail.com")) as UserWithDates;
@@ -33,7 +32,7 @@ export default async function Profile() {
     : [];
   const likedPost = await fetchLikedPosts(usersLikedPosts);
   const likedPostArray: PostWithDates[] | [] = JSON.parse(
-    JSON.stringify(likedPost)
+    JSON.stringify(likedPost),
   );
 
   // if (!usersPosts) return <h1>Something went wrong when fetching posts</h1>;

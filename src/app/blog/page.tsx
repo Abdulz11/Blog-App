@@ -25,7 +25,9 @@ export default async function Blogs() {
   // console.log(session);
   // @ts-ignore
   let posts = await fetchPosts();
+
   let user = await fetchUser(session?.user?.email as string);
+
   // let user = (await fetchUser("dullas@gmail.com")) as UserWithDates;
   let usersLikedPosts: UserWithDates = JSON.parse(JSON.stringify(user));
 
@@ -60,18 +62,18 @@ export default async function Blogs() {
                 />
               </div>
               <span className={styles.date}>
-                {typeof post.createdAt == "string"
-                  ? post.createdAt.split("T")[0]
-                  : post.createdAt.toISOString().split("T")[0]}
+                {post.createdAt && typeof post.body.createdAt == "string"
+                  ? (post.body.createdAt as string).split("T")[0]
+                  : post.body.createdAt.toISOString().split("T")[0]}
               </span>
             </div>
             <CommentsCount numberOfComments={post.comments?.length} />
             <div className={styles.textbox}>
               <h2>{post.title}</h2>
               <p className={styles.desc}>
-                {post.body.length > 100
-                  ? `${post.body.slice(0, 100)}...`
-                  : post.body}
+                {post.body.content.length > 100
+                  ? `${post.body.content.slice(0, 100)}...`
+                  : post.body.content}
               </p>
               <p className={styles.author}>By {post.author || user?.author}</p>
               <Link href={`/blog/${post._id}`}>Read More</Link>

@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 import { checkImageValidity, generateErrorMessage } from "../utilityFunctions";
 
 export async function submitBlogPost(data: FormData) {
-  let { title, body, image, edit } = Object.fromEntries(data.entries());
+  let { title, body, image, edit: id } = Object.fromEntries(data.entries());
 
   const session = await auth();
 
@@ -21,18 +21,23 @@ export async function submitBlogPost(data: FormData) {
     }
     await checkImageValidity(image as string);
     await connectToDb();
-    if (edit) {
-      await Post.findByIdAndUpdate(edit, {
-        title,
-        body,
-        image,
+
+    // if id exists ,it means its an update if it dosent its a new post entirely
+    if (id) {
+      await Post.findByIdAndUpdate(id, {
+        $set: {
+          title,
+          "body.content": body,
+          "body.updatedAt": new Date(),
+          image,
+        },
       });
     } else {
       let fetchedUser = await User.findOne({ email: session?.user?.email });
       let post = new Post({
         author: fetchedUser.author,
         title,
-        body,
+        body: { content: body, createdAt: new Date(), updatedAt: new Date() },
         image,
         email: session?.user?.email,
       });
@@ -42,7 +47,7 @@ export async function submitBlogPost(data: FormData) {
 
       const updatedUser = await User.updateOne(
         { email: session?.user?.email },
-        { $push: { posts: createdPost._id } }
+        { $push: { posts: createdPost._id } },
       );
     }
   } catch (e) {
@@ -51,7 +56,7 @@ export async function submitBlogPost(data: FormData) {
     return errorMessage;
   }
 
-  if (edit) {
+  if (id) {
     revalidatePath("/profile");
     redirect("/profile");
   } else {

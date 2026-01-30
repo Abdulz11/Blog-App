@@ -28,23 +28,23 @@ export default function LikedBlogs(props: { posts: PostWithDates[] }) {
                   />
                 </Link>
                 <LikeButton
-                  email={post.userEmail}
+                  email={post.email}
                   postId={post._id.toString()}
                   usersLikedPosts={true}
                 />
               </div>
               <span className={styles.date}>
-                {typeof post.createdAt == "string"
-                  ? post.createdAt.split("T")[0]
-                  : post.createdAt.toISOString().split("T")[0]}
+                {typeof post.body.createdAt == "string"
+                  ? (post.body.createdAt as string).split("T")[0]
+                  : post.body.createdAt.toISOString().split("T")[0]}
               </span>
             </div>
             <div className={styles.textbox}>
               <h2>{post.title}</h2>
               <p className={styles.desc}>
-                {post.body.length > 100
-                  ? `${post.body.slice(0, 100)}...`
-                  : post.body}
+                {post.body.content.length > 100
+                  ? `${post.body.content.slice(0, 100)}...`
+                  : post.body.content}
               </p>
               <Link href={`/blog/${post._id}`}>Read More </Link>
             </div>

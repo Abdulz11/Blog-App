@@ -4,7 +4,7 @@ import connectToDb from "./connectDb";
 
 // fetch all post
 export async function fetchPosts(
-  email: string
+  email: string,
 ): Promise<PostWithDates[] | undefined> {
   try {
     await connectToDb();
@@ -42,7 +42,7 @@ export async function fetchPost(id: string): Promise<PostWithDates | null> {
 
 // fetch user
 export async function fetchUser(
-  userEmail: string
+  userEmail: string,
 ): Promise<UserWithDates | null> {
   try {
     await connectToDb();
@@ -58,7 +58,7 @@ export async function fetchUser(
 
 // fetch liked posts
 export async function fetchLikedPosts(
-  arr: string[] | []
+  arr: string[] | [],
 ): Promise<PostWithDates[] | []> {
   if (arr.length == 0) return [];
   let postArray: PostWithDates[] = [];
@@ -92,7 +92,7 @@ export async function deletePost(id: string) {
     const user = await User.findOneAndUpdate(
       { email: post.email },
       { $pull: { posts: { _id: id } } },
-      { new: true }
+      { new: true },
     );
 
     const postDeleted = await Post.findByIdAndDelete(id);
@@ -108,7 +108,7 @@ export async function deleteAllPost(email: string) {
     const user = await User.findOneAndUpdate(
       { email: email },
       { posts: [] },
-      { new: true }
+      { new: true },
     );
     await Post.deleteMany({ email });
   } catch (e) {

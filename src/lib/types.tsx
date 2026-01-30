@@ -12,7 +12,7 @@ export interface IUser {
 export interface IPost {
   author: string;
   title: string;
-  body: string;
+  body: { content: string; createdAt: Date; updatedAt?: Date };
   image?: string;
   email: string;
   likes?: string[];

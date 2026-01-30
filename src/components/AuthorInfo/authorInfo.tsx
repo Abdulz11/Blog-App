@@ -11,8 +11,6 @@ async function AuthorInfo({ userEmail }: Props) {
     return "User Not Found";
   }
   const user = await fetchUser(userEmail);
-  // console.log("author", user);
-  console.log(userEmail);
 
   return (
     <>
