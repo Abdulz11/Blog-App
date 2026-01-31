@@ -46,6 +46,12 @@ export default function LikedBlogs(props: { posts: PostWithDates[] }) {
                   ? `${post.body.content.slice(0, 100)}...`
                   : post.body.content}
               </p>
+              <p className={styles.author}>
+                By{" "}
+                {post.author
+                  ? `${post.author?.charAt(0).toUpperCase()}${post?.author?.substring(1)}`
+                  : "..."}
+              </p>
               <Link href={`/blog/${post._id}`}>Read More </Link>
             </div>
           </div>

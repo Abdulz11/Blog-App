@@ -54,7 +54,7 @@ export default function LikeButton({
     timeoutId.current = setTimeout(() => {
       likePost(body);
       console.log("clicked");
-    }, 10000);
+    }, 7000);
   }
 
   return (

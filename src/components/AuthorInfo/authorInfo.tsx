@@ -26,7 +26,11 @@ async function AuthorInfo({ userEmail }: Props) {
       <div>
         <div className={`${styles.flex} ${styles.author}`}>
           <h4 className={styles.fade}>Author</h4>
-          <h5>{user?.author ? user?.author : user?.username}</h5>
+          <h5>
+            {user?.author
+              ? `${user?.author?.charAt(0).toUpperCase()}${user?.author?.substring(1)}`
+              : user?.username}
+          </h5>
         </div>
       </div>
     </>

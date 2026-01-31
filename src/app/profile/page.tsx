@@ -35,13 +35,14 @@ export default async function Profile() {
     JSON.stringify(likedPost),
   );
 
-  // if (!usersPosts) return <h1>Something went wrong when fetching posts</h1>;
-
   return (
     <div className={styles.profileContainer}>
       <div className={styles.profileDiv}>
         <h2>
-          {`Hi, ${user?.author || session?.user?.name?.split(" ")[0]}`}
+          Hi,{" "}
+          {user?.author
+            ? `${user?.author?.charAt(0).toUpperCase()}${user?.author?.substring(1)}`
+            : session?.user?.name?.split(" ")[0]}
           <ChangeName
             userEmail={user?.email}
             username={user?.username}
